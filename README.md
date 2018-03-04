@@ -26,5 +26,12 @@ với **c** = cipher text, **p** = plain text và **k** là mã dịch chuyển 
 ### Hiện thực bằng JavaScript
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
 ## Vigenère
+### Giới thiệu
 
+### Hiện thực bằng JavaScript
+Xem mã nguồn trong file **vigenere.html** và **vigenere.js**
 ## Playfair
+### Giới thiệu
+
+### Hiện thực bằng JavaScript
+Xem mã nguồn trong file **playfair.html** và **playfair.js**
