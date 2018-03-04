@@ -62,7 +62,9 @@ Giải thuật được thực hiện dựa trên một ma trận các chữ cá
 - Nếu ma trận chưa đầy thì điền những vị trí còn lại của ma trận với các chữ cái khác của bảng chữ cái theo thứ tự A -> Z (kí tự nào có trong khóa thì không điền lại, bỏ sự trùng lặp). Kí tự I và J là tương đương nhau (nằm chung một ô)
 - Đối với ma trận 6 x 6 thì I và J là hai kí tự riêng biệt và bổ sung thêm các số từ 0 -> 9.
 
-Ví dụ: với từ khóa là **HOANGTUAN** ta có ma trận sau
+Ví dụ: 
+
+Với từ khóa là **HOANGTUAN** ta có ma trận sau
 
 |   H   |	  O   |	  A   |	  N   |	  G   |
 |:-----:|:-----:|:-----:|:-----:|:-----:|
