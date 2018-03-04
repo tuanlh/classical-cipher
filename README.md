@@ -1,5 +1,5 @@
 # Một số loại mật mã cổ điển
-## Mã dịch chuyển (Shift cipher)
+## Mật mã dịch chuyển (Shift cipher)
 ## Caesar
 ### Giới thiệu
 Là một trong những mật mã đơn giản và được biết đến nhiều nhất. Tên *Caesar* được đặt theo tên của một vị hoàng đế La Mã. Nguyên tắc của mã hóa Caesar là thay thế mỗi chữ cái trong chuỗi cần mã hóa với một chữ cái cách nó một đoạn **k** cho trước trong bảng chữ cái.
@@ -8,7 +8,9 @@ Ví dụ, ta có bảng chữ cái: **ABCDEFGHIJKLMNOPQRSTUVWXYZ**
 
 Với k=3 thì A sẽ được thay thế bằng D. Để phá mã thì ta dịch chuyển ngược lại là D sẽ thay bằng A.
 
-Mã hóa chuỗi **"MAT MA CAESAR"** với k=6 ta sẽ có chuỗi **"SGZ SG IGKYGX"**
+Mã hóa chuỗi **"MAT MA CAESAR"** với k=3 ta sẽ có chuỗi **"PDW PD FDHVDU"**
+
+![caesar_cipher](https://github.com/arituan/classical-cipher/raw/master/caesar_circle.gif)
 
 Tổng quát hóa bằng toán học, với mỗi kí tự từ A->Z ta sẽ tổng quát nó thành số từ 0->25, vậy ta có công thức mã hóa sau:
 
