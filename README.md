@@ -38,11 +38,11 @@ Mỗi kí tự trong plain text sẽ được mã hóa Caesar với khóa k tư�
 
 Tổng quát hóa thành công thức để mã hóa kí tự thứ i:
 
-C<sub>i</sub> = (P<sub>i</sub> + k<sub>i mod m</sub>) mod 26
+> C<sub>i</sub> = (P<sub>i</sub> + k<sub>i mod m</sub>) mod 26
 
 Công thức giải mã kí tự thứ i:
 
-P<sub>i</sub> = (C<sub>i</sub> - k<sub>i mod m</sub>) mod 26
+> P<sub>i</sub> = (C<sub>i</sub> - k<sub>i mod m</sub>) mod 26
 
 với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển *1 <= k <= 25*. **m** là độ dài của chuỗi khóa k
 #### Hiện thực bằng JavaScript
