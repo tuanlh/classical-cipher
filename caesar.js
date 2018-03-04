@@ -34,7 +34,7 @@ function crypt(text, key, isDecrypt = false) {
     }
     var result = "";
     for (let i = 0; i < text.length; i++) {
-        var codeTxt = text[i].charCodeAt();
+        var codeTxt = text.charCodeAt(i);
         if (codeTxt >= 65 && codeTxt <= 90) {
             let resultCode = ((codeTxt - 65) + codeKey) % 26;
             result += String.fromCharCode(resultCode + 65);
@@ -42,7 +42,7 @@ function crypt(text, key, isDecrypt = false) {
             let resultCode = ((codeTxt - 97) + codeKey) % 26;
             result += String.fromCharCode(resultCode + 97);
         } else {
-            result += text[i];
+            result += text.charAt(i);
         }
     }
     return result;
@@ -79,7 +79,7 @@ function btnDecrypt() {
 
 function isKeyValid(key) {
     for (let i=0; i < key.length; i++) {
-        codeKey = key[i].charCodeAt();
+        codeKey = key.charCodeAt(i);
         if (!((codeKey >= 65 && codeKey <= 90) || (codeKey >= 48 && codeKey <= 57))) {
             return false;
         }

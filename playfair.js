@@ -4,10 +4,9 @@ function updateMatrixKey() {
     var key = document.getElementById("key").value.toUpperCase().replace(/[^A-Z_]+/g, "");
     document.getElementById("key").value = key;
     key = key.replace("J", "I");
-    key = removeDuplicate(key);
     key = removeDuplicate(key + alph);
     for (let i=0; i < key.length; i++) {
-        document.getElementById(getRow(i).toString() + getCol(i).toString()).innerHTML = key[i];
+        document.getElementById(getRow(i).toString() + getCol(i).toString()).innerHTML = key.charAt(i);
     }
 }
 
@@ -22,7 +21,7 @@ function crypt(message, matrixKey, isDecrypt = false) {
         k = -1;
     }
     for (let i=0; i < text.length; i++) {
-        let codeTxt = text[i].charCodeAt();
+        let codeTxt = text.charCodeAt(i);
         if ((codeTxt >= 65 && codeTxt <= 90) || (codeTxt >= 97 && codeTxt <= 122)) {
             map.push(i);
         }
@@ -70,15 +69,6 @@ function crypt(message, matrixKey, isDecrypt = false) {
     return text;
 }
 
-function isKeyValid(key) {
-    for (var i = 0; i < key.length; i++) {
-        codeKey = key[i].charCodeAt();
-        if (codeKey < 65 || codeKey > 90) {
-            return false;
-        }
-    }
-    return true;
-}
 function btnEncrypt() {
     var plainText = document.getElementById("plainText").value;
     if (plainText.length == 0) {
@@ -88,9 +78,6 @@ function btnEncrypt() {
     var matrixKey = getMatrixKey();
     if (matrixKey.length == 0) {
         document.getElementById("errorMsg").innerHTML = 'Khóa K không được để trống';
-        return;
-    } else if (isKeyValid(matrixKey) == false) {
-        document.getElementById("errorMsg").innerHTML = 'Khóa K chứa kí tự không hợp lệ';
         return;
     }
     
