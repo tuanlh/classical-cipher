@@ -6,7 +6,7 @@ function btnEncrypt() {
         return;
     }
     var key = document.getElementById("key").value.toUpperCase();
-    if ((isNaN(key) && key.length > 1) || (!isNaN(key) && key.length > 2)) {
+    if ((isNaN(key) && key.length > 1) || (!isNaN(key) && key.length > 2) || (key.length == 0)) {
         document.getElementById("errorMsg").innerHTML = 'Khóa K bị rỗng hoặc sai!';
         return;
     }
