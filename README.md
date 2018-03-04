@@ -1,7 +1,8 @@
 # Một số loại mật mã cổ điển
 ## Mật mã dịch chuyển (Shift cipher)
-### Caesar
-#### Giới thiệu
+Hai đại diện tiêu biểu của mật mã dịch chuyển là **Caesar** và **Vigenère**
+### Mật mã Caesar
+#### Tổng quan về caesar
 Là một trong những mật mã đơn giản và được biết đến nhiều nhất. Tên *Caesar* được đặt theo tên của một vị hoàng đế La Mã. Nguyên tắc của mã hóa Caesar là thay thế mỗi chữ cái trong chuỗi cần mã hóa với một chữ cái cách nó một đoạn **k** cho trước trong bảng chữ cái.
 
 Ví dụ, ta có bảng chữ cái: **ABCDEFGHIJKLMNOPQRSTUVWXYZ**
@@ -28,10 +29,10 @@ Giải mã sẽ ngược lại:
 > P = E(C, k) = (C - k) modulo 26
 
 với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển *1 <= k <= 25*
-#### Hiện thực bằng JavaScript
+#### Hiện thực caesar bằng JavaScript
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
-### Vigenère
-#### Giới thiệu
+### Mật mã Vigenère
+#### Tổng quan về Vigenère
 Là loại mã hóa kết hợp cách mã hóa Caesar, ở Vigenere sử dụng một chuỗi khóa K, mỗi kí tự trong khóa K sẽ tương ứng mã hóa một kí tự trong nguyên bản (Plain text) theo cách mã hóa Caesar, trường hợp độ dài khóa K nhỏ hơn plain text thì sẽ lặp lại khóa K sao cho bằng plain text.
 
 Ví dụ:
@@ -51,10 +52,10 @@ Công thức giải mã kí tự thứ i:
 > P<sub>i</sub> = (C<sub>i</sub> - k<sub>i mod m</sub>) mod 26
 
 với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển *1 <= k <= 25*. **m** là độ dài của chuỗi khóa k
-#### Hiện thực bằng JavaScript
+#### Hiện thực Vigenère bằng JavaScript
 Xem mã nguồn trong file **vigenere.html** và **vigenere.js**
 ## Playfair
-### Giới thiệu
+### Tổng quan về Playfair
 Là một hệ mã hóa nhiều chữ, giảm bớt tương quan giữa văn bản mã hóa và nguyên bản bằng cách mã hóa đồng thời nhiều chữ cái (mã hóa lần lượt 2 kí tự liên tiếp nhau) của nguyên bản.
 
 Giải thuật được thực hiện dựa trên một ma trận các chữ cái n x n(n=5 hoặc n=6) được xây dựng từ một một khóa (chuỗi các ký tự). Cách xây dựng ma trận như sau:
@@ -85,5 +86,5 @@ cùng được thay bằng ký tự ở cột đầu tiên.
 ![playfair](https://github.com/arituan/classical-cipher/raw/master/playfair.PNG)
 
 Với từ khóa **HOANGTUAN**, dùng giải thuật playfair để mã hóa chuỗi **"TP HO CHI MINH"** ta được chuỗi **"UM OA TNE QKAAV"**
-### Hiện thực bằng JavaScript
+### Hiện thực Playfair bằng JavaScript
 Xem mã nguồn trong file **playfair.html** và **playfair.js**
