@@ -26,3 +26,5 @@ với **c** = cipher text, **p** = plain text và **k** là mã dịch chuyển 
 ### Hiện thực bằng JavaScript
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
 ## Vigenère
+
+## Playfair
