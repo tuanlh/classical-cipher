@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Vigenere</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="vigenere.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>Mã hóa Vigenère</header>
+    <article>
+        <p>
+            <label>Plain text - Chuỗi chưa mã hóa:</label>
+            <br/>
+            <textarea id="plainText" cols="30"></textarea>
+        </p>
+        <p>
+            <label>Cipher text - Chuỗi sau khi mã hóa: </label>
+            <br/>
+            <textarea id="cipherText" cols="30"></textarea>
+        </p>
+        <p>
+            <label>Key K: </label>
+            <input type="text" id="key" pattern="^[a-zA-Z]+">
+        </p>
+        <div id="errorMsg" class="error"></div>
+        <p>
+            <button type="button" onclick="btnEncrypt()">Encrypt</button>
+            <button type="button" onclick="btnDecrypt()">Decrypt</button>
+        </p>
+    </article>
+</body>
+
+</html>
