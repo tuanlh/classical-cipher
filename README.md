@@ -82,6 +82,8 @@ cùng được thay bằng ký tự ở cột đầu tiên.
 - Nếu 2 ký tự lập thành hình chữ nhật đươc thay bằng 2 ký tự tương ứng trên cùng dòng
 ở hai góc còn lại.
 
+![playfair](https://github.com/arituan/classical-cipher/raw/master/playfair.PNG)
 
+Với từ khóa **HOANGTUAN**, dùng giải thuật playfair để mã hóa chuỗi **"TP HO CHI MINH"** ta được chuỗi **"UM OA TNE QKAAV"**
 ### Hiện thực bằng JavaScript
 Xem mã nguồn trong file **playfair.html** và **playfair.js**
