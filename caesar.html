@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Caesar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="caesar.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>Mã hóa Caesar</header>
+    <article>
+        <p>
+            <label>Plain text - Chuỗi chưa mã hóa:</label>
+            <br/>
+            <textarea id="plainText" cols="30"></textarea>
+        </p>
+        <p>
+            <label>Cipher text - Chuỗi sau khi mã hóa: </label>
+            <br/>
+            <textarea id="cipherText" cols="30"></textarea>
+        </p>
+        <p>
+            <label>Key K: </label>
+            <input type="text" id="key" size="1" pattern="^[a-zA-Z0-9]{0,1}$">
+        </p>
+        <div id="errorMsg" class="error"></div>
+        <p>
+            <button type="button" onclick="btnEncrypt()">Encrypt</button>
+            <button type="button" onclick="btnDecrypt()">Decrypt</button>
+        </p>
+    </article>
+
+    <section id="resultBruteforce"></section>
+</body>
+
+</html>
