@@ -1,0 +1,75 @@
+body {
+    padding: 18px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr.playfair {
+    background-color: #f0ecec;
+}
+
+td.playfair {
+    width: 25px;
+    height: 25px;
+}
+
+td.playfair:hover {
+    background-color: #fff;
+}
+
+button {
+    width: 130px;
+    height: 40px;
+}
+
+label {
+    font-weight: bold;
+}
+
+div.error {
+    background: rgb(182, 182, 167);
+    color: rgb(245, 11, 11);
+}
+
+header {
+    background-color: #F1F1F1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18pt;
+    padding: 20px;
+}
+
+aside {
+    float: left;
+    width: 20%;
+    padding: 20px;
+}
+
+article {
+    float: left;
+    width: 21%;
+    padding: 20px;
+}
+
+section {
+    float: left;
+    width: 59%;
+    padding: 20px;
+}
