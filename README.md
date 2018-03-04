@@ -32,7 +32,7 @@ với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển 
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
 ### Vigenère
 #### Giới thiệu
-Là loại mã hóa kết hợp cách mã hóa Caesar, ở Vigenere sử dụng một chuỗi khóa K, mỗi kí tự trong khóa K sẽ tương ứng mã hóa một kí tự trong văn bản ban đầu (Plain text) theo cách mã hóa Caesar, trường hợp độ dài khóa K nhỏ hơn plain text thì sẽ lặp lại khóa K sao cho bằng plain text.
+Là loại mã hóa kết hợp cách mã hóa Caesar, ở Vigenere sử dụng một chuỗi khóa K, mỗi kí tự trong khóa K sẽ tương ứng mã hóa một kí tự trong nguyên bản (Plain text) theo cách mã hóa Caesar, trường hợp độ dài khóa K nhỏ hơn plain text thì sẽ lặp lại khóa K sao cho bằng plain text.
 
 Ví dụ:
 
@@ -55,6 +55,31 @@ với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển 
 Xem mã nguồn trong file **vigenere.html** và **vigenere.js**
 ## Playfair
 ### Giới thiệu
+Là một hệ mã hóa nhiều chữ, giảm bớt tương quan giữa văn bản mã hóa và nguyên bản bằng cách mã hóa đồng thời nhiều chữ cái (mã hóa lần lượt 2 kí tự liên tiếp nhau) của nguyên bản.
+
+Giải thuật được thực hiện dựa trên một ma trận các chữ cái n x n(n=5 hoặc n=6) được xây dựng từ một một khóa (chuỗi các ký tự). Cách xây dựng ma trận như sau:
+- Điền các chữ cái của từ khóa (bỏ các kí tự trùng)
+- Nếu ma trận chưa đầy thì điền những vị trí còn lại của ma trận với các chữ cái khác của bảng chữ cái theo thứ tự A -> Z (kí tự nào có trong khóa thì không điền lại, bỏ sự trùng lặp). Kí tự I và J là tương đương nhau (nằm chung một ô)
+- Đối với ma trận 6 x 6 thì I và J là hai kí tự riêng biệt và bổ sung thêm các số từ 0 -> 9.
+
+Ví dụ: với từ khóa là **HOANGTUAN** ta có ma trận sau
+
+|   H   |	  O   |	  A   |	  N   |	  G   |
+|:-----:|:-----:|:-----:|:-----:|:-----:|
+| **T** |	**U** |	**B** |	**C** |	**D** |
+| **E** |	**F** |	**I** |	**K** |	**L** |
+| **M** |	**P** |	**Q** |	**R** |	**S** |
+| **V** |	**W** |	**X** |	**Y** |	**Z** |
+
+Nguyên tắc mã hóa Playfair như sau:
+- Mã hóa từng cặp 2 ký tự liên tiếp nhau. Nếu dư 1 ký tự, thêm ký tự **"x"** vào cuối.
+- Nếu 2 ký tự nằm cùng dòng, thay thế bằng 2 ký tự tương ứng bên phải. Ký tự ở cột cuối
+cùng được thay bằng ký tự ở cột đầu tiên.
+- Nếu 2 ký tự nằm cùng cột được thay bằng 2 ký tự bên dưới. Ký tự ở hàng cuối cùng
+được thay bằng ký tự ở hàng trên cùng.
+- Nếu 2 ký tự lập thành hình chữ nhật đươc thay bằng 2 ký tự tương ứng trên cùng dòng
+ở hai góc còn lại.
+
 
 ### Hiện thực bằng JavaScript
 Xem mã nguồn trong file **playfair.html** và **playfair.js**
