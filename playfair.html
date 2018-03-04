@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Playfair</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="playfair.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onload="updateMatrixKey()">
+    <header>Mã hóa Playfair</header>
+    <aside>
+        <p>
+            <label>Khóa K: </label>
+            <input type="text" id="key" pattern="^[a-zA-Z]+" onkeyup="updateMatrixKey()">
+        </p>
+        <p>
+            <label>Bảng mã Playfair (5x5)</label>
+        </p>
+        <table>
+            <tr class="playfair">
+                <td class="playfair" id="00"></td>
+                <td class="playfair" id="01"></td>
+                <td class="playfair" id="02"></td>
+                <td class="playfair" id="03"></td>
+                <td class="playfair" id="04"></td>
+            </tr>
+            <tr class="playfair">
+                <td class="playfair" id="10"></td>
+                <td class="playfair" id="11"></td>
+                <td class="playfair" id="12"></td>
+                <td class="playfair" id="13"></td>
+                <td class="playfair" id="14"></td>
+            </tr>
+            <tr class="playfair">
+                <td class="playfair" id="20"></td>
+                <td class="playfair" id="21"></td>
+                <td class="playfair" id="22"></td>
+                <td class="playfair" id="23"></td>
+                <td class="playfair" id="24"></td>
+            </tr>
+            <tr class="playfair">
+                <td class="playfair" id="30"></td>
+                <td class="playfair" id="31"></td>
+                <td class="playfair" id="32"></td>
+                <td class="playfair" id="33"></td>
+                <td class="playfair" id="34"></td>
+            </tr>
+            <tr class="playfair">
+                <td class="playfair" id="40"></td>
+                <td class="playfair" id="41"></td>
+                <td class="playfair" id="42"></td>
+                <td class="playfair" id="43"></td>
+                <td class="playfair" id="44"></td>
+            </tr>
+        </table>
+    </aside>
+    <article>
+        <p>
+            <label>Plain text - Chuỗi chưa mã hóa:</label>
+            <br/>
+            <textarea id="plainText" cols="30"></textarea> </p>
+        <p>
+            <label>Cipher text - Chuỗi sau khi mã hóa: </label>
+            <br/>
+            <textarea id="cipherText" cols="30"></textarea>
+        </p>
+        <div id="errorMsg" class="error"></div>
+        <p>
+            <button type="button" onclick="btnEncrypt()">Encrypt</button>
+            <button type="button" onclick="btnDecrypt()">Decrypt</button>
+        </p>
+        <div style="color: blue;">
+            <b>Lưu ý: </b>kí tự I tương đương kí tự J</div>
+    </article>
+
+</body>
+
+</html>
