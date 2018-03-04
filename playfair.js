@@ -2,10 +2,10 @@ function updateMatrixKey() {
     var a = "abc";
     var alph = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
     var key = document.getElementById("key").value.toUpperCase().replace(/[^A-Z_]+/g, "");
+    key = key.replace('J', 'I');
     document.getElementById("key").value = key;
-    key = key.replace("J", "I");
     key = removeDuplicate(key + alph);
-    for (let i=0; i < key.length; i++) {
+    for (let i=0; i < 26; i++) {
         document.getElementById(getRow(i).toString() + getCol(i).toString()).innerHTML = key.charAt(i);
     }
 }
