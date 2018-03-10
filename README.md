@@ -34,7 +34,7 @@ Chúng ta sẽ sử dụng công thức mã hóa và giải mã ở trên để 
 
 Nguyên liệu sẽ dùng trong Javascript:
 - **[document.getElementById()](https://www.w3schools.com/jsref/met_document_getelementbyid.asp)**: sử dụng DOM để tương tác với HTML, lấy input và trả về output.
-- **[String.prototype.charAt(index)](https://www.w3schools.com/jsref/jsref_charat.asp)**: lấy ra kí tự thứ i trong chuỗi.
+- **[String.prototype.charAt(index)](https://www.w3schools.com/jsref/jsref_charat.asp)**: lấy ra kí tự thứ i trong chuỗi. (sử dụng ``charAt()`` an toàn hơn việc get index trực tiếp bằng toán tử ``[]``)
 - **[String.prototype.charCodeAt(ihdex)](https://www.w3schools.com/jsref/jsref_charCodeAt.asp)**: lấy mã ASCII của kí tự thứ i.
 - **[String.fromCharCode(ascii_number)](https://www.w3schools.com/jsref/jsref_fromCharCode.asp)**: in ra kí tự từ mã ASCII.
 - **[String.prototype.toUpperCase()](https://www.w3schools.com/jsref/jsref_touppercase.asp)**: chuyển đổi chuỗi sang in hoa.
@@ -48,9 +48,9 @@ document.write(str.charCodeAt(0));
 //output: 65
 ````
 
-Ta đã biết kí tự từ A->Z có mã là 65->90 trong bảng mã ASCII, sau đó lấy mã ASCII của kí tự đó trừ đi 65 để lấy thứ tự của kí tự (phạm vi từ 0->25). Sau đó thực hiện công thức như đã dẫn ở trên để mã hóa. (đối với các kí tự thường a->z thì trừ đi 97. Đối với key thì đầu tiên ta cần chuyển các kí tự của key sang in hoa hết (sử dụng ``toUpperCase()``) cho bước xử lí đơn giản, sau đó quy đổi như nguyên bản.
+Ta đã biết kí tự từ A->Z có mã là 65->90 trong bảng mã ASCII, sau đó lấy mã ASCII của kí tự đó trừ đi 65 để lấy thứ tự của kí tự (phạm vi từ 0->25), đối với các kí tự thường a->z thì trừ đi 97. Các khoảng trắng và kí tự khác thì bỏ qua (nằm ngoại phạm vi 65->90 và 97->122) Sau đó thực hiện công thức như đã dẫn ở trên để mã hóa. Đối với key thì đầu tiên ta cần chuyển các kí tự của key sang in hoa hết (sử dụng ``toUpperCase()``) cho bước xử lí đơn giản, sau đó quy đổi như nguyên bản.
 
-Sau khi ra được kết quả thì cộng lại với 65 (đối với kí tự in hoa) hoặc 97 (đối với kí tự thường), và dùng hàm ``fromCharCode()`` để thực chuyển đổi từ ASCII ra kí tự.
+Sau khi áp dụng công thức và ra được kết quả thì cộng lại với 65 (đối với kí tự in hoa) hoặc 97 (đối với kí tự thường), và dùng hàm ``fromCharCode()`` để thực chuyển đổi từ ASCII ra kí tự.
 
 Giải mã thì cũng tương tự nhưng ta cần biến đổi key một chút, ta thực hiện lấy 26 trừ đi **k** được key mới, và lấy key mới này áp dụng vào công thức mã hóa sẽ giải mã được.
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
@@ -112,4 +112,46 @@ cùng được thay bằng ký tự ở cột đầu tiên.
 
 Với từ khóa **HOANGTUAN**, dùng giải thuật playfair để mã hóa chuỗi **"TP HO CHI MINH"** ta được chuỗi **"UM OA TNE QKAAV"**
 ### Hiện thực Playfair bằng JavaScript
+Các công đoạn mà ta cần thực hiện:
+- Tạo bảng khóa K.
+- Tách chuỗi nguyên bản thành từng cặp 2 kí tự liên tiếp nhau.
+- Đối chiếu bảng khóa và tìm ra các cặp 2 kí tự thay thế.
+
+**Bước 1: tạo bảng khóa K.** 
+
+Trên HTML tạo một bảng gồm 5 dòng và 5 cột (dùng thẻ ``<table>``) và gán Id cho các thẻ ``<td>`` từ **00** đến **44**. Sau đó gán cho các ô giá trị từ A->Z. Việc cần làm tiếp theo gắn khóa Key mà người dùng nhập vào bảng khóa.
+
+Tạo một chuỗi Alphabet gồm 25 kí tự từ A->Z (bỏ **J** đi, xem **I** và **J** là tương đương nhau).
+
+````Javascript
+var alph = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+````
+
+Thực hiện nối chuỗi key mà người dùng nhập vào và ``alph``, sau đó thực hiện loại bỏ kí tự trùng lặp bằng hàm sau:
+
+````Javascript
+function removeDuplicate(text) {
+    var result = "";
+    for (var i = 0; i < text.length; i++) {
+        if (result.indexOf(text.charAt(i)) == -1) {
+            result += text.charAt(i);
+        }
+    }
+    return result;
+}
+````
+
+Sau đó cập nhật chuỗi khóa vào bảng khóa bằng ``document.getElementById(#Id).innerHTML``
+
+**Bước 2: tách chuỗi nguyên bản thành từng cặp 2 kí tự liên tiếp nhau.**
+
+Việc tách này phải thỏa mãn: chỉ lấy các kí tự từ A->Z, a->z. Còn lại bỏ qua.
+
+Chúng ta không thể sử dụng phương pháp loại bỏ các khoảng trắng và kí tự đặc biệt ra khỏi chuỗi rồi tách ra từng cặp xử lí được, vì như thế khi xuất ra kết quả giải mã sẽ làm mất đi hết các khoảng trắng và các kí tự khác. Tức là mình chỉ mã hóa các kí tự Alphabet, còn lại vẫn giữ nguyên để xuất kết quả.
+
+Vậy thì làm cách nào? Chúng ta sẽ dùng một mảng có chức năng để map dictionary **vị trí** các kí tự Alphabetic trong chuỗi nguyên bản lại, rồi bắt từng cặp phần tử trong map đó đem xử lí. Lưu ý là chúng ta chỉ map vị trí lại từng cặp thôi.
+
+**Bước 3: Đối chiếu bảng khóa và tìm ra các cặp 2 kí tự thay thế.**
+
+
 Xem mã nguồn trong file **playfair.html** và **playfair.js**
