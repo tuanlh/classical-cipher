@@ -48,11 +48,12 @@ document.write(str.charCodeAt(0));
 //output: 65
 ````
 
-Ta đã biết kí tự từ A->Z có mã là 65->90 trong bảng mã ASCII, sau đó lấy mã ASCII của kí tự đó trừ đi 65 để lấy thứ tự của kí tự (phạm vi từ 0->25), đối với các kí tự thường a->z thì trừ đi 97. Các khoảng trắng và kí tự khác thì bỏ qua (nằm ngoại phạm vi 65->90 và 97->122) Sau đó thực hiện công thức như đã dẫn ở trên để mã hóa. Đối với key thì đầu tiên ta cần chuyển các kí tự của key sang in hoa hết (sử dụng ``toUpperCase()``) cho bước xử lí đơn giản, sau đó quy đổi như nguyên bản.
+Ta đã biết kí tự từ A->Z có mã là 65->90 trong bảng mã ASCII, sau đó lấy mã ASCII của kí tự đó trừ đi 65 để lấy thứ tự của kí tự (phạm vi từ 0->25), đối với các kí tự thường a->z thì trừ đi 97. Các khoảng trắng và kí tự khác thì bỏ qua (nằm ngoài phạm vi 65->90 và 97->122) Sau đó thực hiện công thức như đã dẫn ở trên để mã hóa. Đối với key thì đầu tiên ta cần chuyển các kí tự của key sang in hoa hết (sử dụng ``toUpperCase()``) cho bước xử lí đơn giản, sau đó quy đổi như nguyên bản.
 
-Sau khi áp dụng công thức và ra được kết quả thì cộng lại với 65 (đối với kí tự in hoa) hoặc 97 (đối với kí tự thường), và dùng hàm ``fromCharCode()`` để thực chuyển đổi từ ASCII ra kí tự.
+Sau khi áp dụng công thức và ra được kết quả thì cộng lại với 65 (đối với kí tự in hoa) hoặc 97 (đối với kí tự thường), và dùng hàm ``fromCharCode()`` để thực hiện chuyển đổi từ mã ASCII ra kí tự.
 
-Giải mã thì cũng tương tự nhưng ta cần biến đổi key một chút, ta thực hiện lấy 26 trừ đi **k** được key mới, và lấy key mới này áp dụng vào công thức mã hóa sẽ giải mã được.
+Giải mã thì cũng tương tự nhưng ta cần biến đổi key một chút, ta thực hiện lấy 26 - **k** được key mới, và lấy key mới này áp dụng vào công thức mã hóa sẽ giải mã được.
+
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
 
 ### Mật mã Vigenère
@@ -149,9 +150,48 @@ Việc tách này phải thỏa mãn: chỉ lấy các kí tự từ A->Z, a->z.
 
 Chúng ta không thể sử dụng phương pháp loại bỏ các khoảng trắng và kí tự đặc biệt ra khỏi chuỗi rồi tách ra từng cặp xử lí được, vì như thế khi xuất ra kết quả giải mã sẽ làm mất đi hết các khoảng trắng và các kí tự khác. Tức là mình chỉ mã hóa các kí tự Alphabet, còn lại vẫn giữ nguyên để xuất kết quả.
 
-Vậy thì làm cách nào? Chúng ta sẽ dùng một mảng có chức năng để map dictionary **vị trí** các kí tự Alphabetic trong chuỗi nguyên bản lại, rồi bắt từng cặp phần tử trong map đó đem xử lí. Lưu ý là chúng ta chỉ map vị trí lại từng cặp thôi.
+Vậy thì làm cách nào? Chúng ta sẽ dùng một mảng có chức năng để map dictionary **vị trí** các kí tự Alphabetic trong chuỗi nguyên bản lại, rồi bắt từng cặp phần tử trong map đó đem xử lí. Lưu ý là chúng ta chỉ map vị trí lại từng cặp thôi. Đoạn code để map một plainText như sau:
+
+````Javascript
+var plainText; //get from input
+var map = [];
+
+for (let i=0; i < text.length; i++) {
+    let codeTxt = text.charCodeAt(i);
+    if ((codeTxt >= 65 && codeTxt <= 90) || (codeTxt >= 97 && codeTxt <= 122)) {
+        map.push(i);
+    }
+}
+````
+
+Một điều cần lưu ý là khi ở cuối plaintext dư một kí tự thì chúng ta cần thêm **"X"** vào cuối:
+
+````Javascript
+if ((map.length % 2) == 1) {
+    text += "X";
+    map.push(text.length - 1);
+}
+````
 
 **Bước 3: Đối chiếu bảng khóa và tìm ra các cặp 2 kí tự thay thế.**
+Ta sẽ sử dụng ``String.prototype.indexOf()`` để tìm ra vị trí của kí tự plaintext trong bảng khóa.
 
+Có 3 trường hợp khi đối chiếu với bảng khóa:
+- Cùng cột
+- Cùng dòng
+- Còn lại (không cùng cột, không cùng dòng)
+
+Cách thay thế kí tự ở các trường hợp đã có mô tả cách giải quyết ở trên.
+
+Một vấn đề gặp phải khi thay thế kí tự ở vị trí nào đó trong một chuỗi thì String trong javascript không hỗ trợ nên chúng ta phải xây dựng hàm để xử lí, chúng ta xây dụng một prototype ``setCharAt`` cho class String như sau:
+
+````Javascript
+String.prototype.setCharAt = function (index, chr) {
+    if(index < this.length) {
+        return this.substr(0, index) + chr + this.substr(index + 1);
+    }
+    return this;
+}
+````
 
 Xem mã nguồn trong file **playfair.html** và **playfair.js**
