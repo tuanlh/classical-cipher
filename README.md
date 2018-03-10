@@ -156,8 +156,8 @@ Vậy thì làm cách nào? Chúng ta sẽ dùng một mảng có chức năng �
 var plainText; //get from input
 var map = [];
 
-for (let i=0; i < text.length; i++) {
-    let codeTxt = text.charCodeAt(i);
+for (let i=0; i < plainText.length; i++) {
+    let codeTxt = plainText.charCodeAt(i);
     if ((codeTxt >= 65 && codeTxt <= 90) || (codeTxt >= 97 && codeTxt <= 122)) {
         map.push(i);
     }
@@ -168,8 +168,8 @@ Một điều cần lưu ý là khi ở cuối plaintext dư một kí tự thì
 
 ````Javascript
 if ((map.length % 2) == 1) {
-    text += "X";
-    map.push(text.length - 1);
+    plainText += "X";
+    map.push(plainText.length - 1);
 }
 ````
 
