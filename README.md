@@ -30,7 +30,31 @@ Giải mã sẽ ngược lại:
 
 với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển *1 <= k <= 25*
 #### Hiện thực caesar bằng JavaScript
+Chúng ta sẽ sử dụng công thức mã hóa và giải mã ở trên để thực hiện trên HTML/Javascript.
+
+Nguyên liệu sẽ dùng trong Javascript:
+- **[document.getElementById()](https://www.w3schools.com/jsref/met_document_getelementbyid.asp)**: sử dụng DOM để tương tác với HTML, lấy input và trả về output.
+- **[String.prototype.charAt(index)](https://www.w3schools.com/jsref/jsref_charat.asp)**: lấy ra kí tự thứ i trong chuỗi.
+- **[String.prototype.charCodeAt(ihdex)](https://www.w3schools.com/jsref/jsref_charCodeAt.asp)**: lấy mã ASCII của kí tự thứ i.
+- **[String.fromCharCode(ascii_number)](https://www.w3schools.com/jsref/jsref_fromCharCode.asp)**: in ra kí tự từ mã ASCII.
+- **[String.prototype.toUpperCase()](https://www.w3schools.com/jsref/jsref_touppercase.asp)**: chuyển đổi chuỗi sang in hoa.
+- **%**: phép tính modulo.
+
+Để thực hiện được công thức trên thì ta cần quy đổi mỗi kí tự trong nguyên bản (plaintext) ra mã ASCII, ta sử dụng    ``charCodeAt()`` trong class String để đổi một kí tự trong chuỗi sang mã ASCII. Ví dụ:
+
+````Javascript
+var str = "ABC";
+document.write(str.charCodeAt(0));
+//output: 65
+````
+
+Ta đã biết kí tự từ A->Z có mã là 65->90 trong bảng mã ASCII, sau đó lấy mã ASCII của kí tự đó trừ đi 65 để lấy thứ tự của kí tự (phạm vi từ 0->25). Sau đó thực hiện công thức như đã dẫn ở trên để mã hóa. (đối với các kí tự thường a->z thì trừ đi 97. Đối với key thì đầu tiên ta cần chuyển các kí tự của key sang in hoa hết (sử dụng ``toUpperCase()``) cho bước xử lí đơn giản, sau đó quy đổi như nguyên bản.
+
+Sau khi ra được kết quả thì cộng lại với 65 (đối với kí tự in hoa) hoặc 97 (đối với kí tự thường), và dùng hàm ``fromCharCode()`` để thực chuyển đổi từ ASCII ra kí tự.
+
+Giải mã thì cũng tương tự nhưng ta cần biến đổi key một chút, ta thực hiện lấy 26 trừ đi **k** được key mới, và lấy key mới này áp dụng vào công thức mã hóa sẽ giải mã được.
 Xem mã nguồn trong file **caesar.html** và **caesar.js**
+
 ### Mật mã Vigenère
 #### Tổng quan về Vigenère
 Là loại mã hóa kết hợp cách mã hóa Caesar, ở Vigenere sử dụng một chuỗi khóa K, mỗi kí tự trong khóa K sẽ tương ứng mã hóa một kí tự trong nguyên bản (Plain text) theo cách mã hóa Caesar, trường hợp độ dài khóa K nhỏ hơn plain text thì sẽ lặp lại khóa K sao cho bằng plain text.
@@ -53,6 +77,7 @@ Công thức giải mã kí tự thứ i:
 
 với **C** = cipher text, **P** = plain text và **k** là mã dịch chuyển *1 <= k <= 25*. **m** là độ dài của chuỗi khóa k
 #### Hiện thực Vigenère bằng JavaScript
+Tương tự như ở Caesar nhưng lúc này key không còn là một kí tự nữa mà là một chuỗi kí tự, việc mã hóa và giải như caesar.
 Xem mã nguồn trong file **vigenere.html** và **vigenere.js**
 ## Playfair
 ### Tổng quan về Playfair
