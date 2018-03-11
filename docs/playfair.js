@@ -5,7 +5,7 @@ function updateMatrixKey() {
     key = key.replace('J', 'I');
     document.getElementById("key").value = key;
     key = removeDuplicate(key + alph);
-    for (let i=0; i < 26; i++) {
+    for (let i=0; i < 25; i++) {
         document.getElementById(getRow(i).toString() + getCol(i).toString()).innerHTML = key.charAt(i);
     }
 }
@@ -18,7 +18,7 @@ function crypt(message, matrixKey, isDecrypt = false) {
     var map = [];
     var k = 1; //1 => encrypt, -1 => decrypt
     if (isDecrypt == true) {
-        k = -1;
+        k = 4;
     }
     for (let i=0; i < text.length; i++) {
         let codeTxt = text.charCodeAt(i);
@@ -96,9 +96,6 @@ function btnDecrypt() {
     var matrixKey = getMatrixKey();
     if (matrixKey.length == 0) {
         document.getElementById("errorMsg").innerHTML = 'Khóa K không được để trống nhé!';
-        return;
-    } else if (isKeyValid(matrixKey) == false) {
-        document.getElementById("errorMsg").innerHTML = 'Khóa K chứa kí tự không hợp lệ';
         return;
     }
     

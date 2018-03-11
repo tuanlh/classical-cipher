@@ -128,6 +128,10 @@ Tạo một chuỗi Alphabet gồm 25 kí tự từ A->Z (bỏ **J** đi, xem **
 var alph = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
 ````
 
+Trước khi làm bước tiếp theo ta cần xử lí key như sau:
+- Chuyển đổi tất cả sang in hoa bằng ``String.prototype.toUpperCase()``
+- Thay thế **"J"** bằng **"I"**. Sử dụng ``String.prototype.replace()``
+
 Thực hiện nối chuỗi key mà người dùng nhập vào và ``alph``, sau đó thực hiện loại bỏ kí tự trùng lặp bằng hàm sau:
 
 ````Javascript
@@ -144,7 +148,7 @@ function removeDuplicate(text) {
 
 Sau đó cập nhật chuỗi khóa vào bảng khóa bằng ``document.getElementById(#Id).innerHTML``
 
-**Bước 2: tách chuỗi nguyên bản thành từng cặp 2 kí tự liên tiếp nhau.**
+**Bước 2: Tách chuỗi nguyên bản thành từng cặp 2 kí tự liên tiếp nhau.**
 
 Việc tách này phải thỏa mãn: chỉ lấy các kí tự từ A->Z, a->z. Còn lại bỏ qua.
 
